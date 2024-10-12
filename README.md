@@ -65,3 +65,7 @@ php artisan migrate
 
 # Rode o servidor local
 php artisan serve
+
+
+
+
