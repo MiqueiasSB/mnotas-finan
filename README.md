@@ -1,6 +1,6 @@
 # 📋 MNotas - Sistema de Gestão Financeira
 
-![Badge](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow) ![GitHub repo size](https://img.shields.io/github/repo-size/miqueiasbraga2001/mnotas-financas) ![GitHub contributors](https://img.shields.io/github/contributors/miqueiasbraga2001/mnotas-financas)
+![Badge](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow) 
 
 Um sistema simples e intuitivo para gerenciar suas finanças pessoais e empresariais. Controle transações, categorias e tenha uma visão clara de suas finanças.
 
@@ -15,11 +15,11 @@ Um sistema simples e intuitivo para gerenciar suas finanças pessoais e empresar
 ---
 
 ## 🛠️ Tecnologias Utilizadas
-- **Back-end**: Laravel ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
-- **Front-end**: Bootstrap ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white), Livewire, Alpine.js ![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=white)
-- **Gráficos**: Chart.js ![Chart.js](https://img.shields.io/badge/Chart.js-F5788D?style=for-the-badge&logo=chart.js&logoColor=white)
-- **Banco de Dados**: MySQL ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-- **Controle de Versão**: Git ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white), GitLab ![GitLab](https://img.shields.io/badge/GitLab-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white)
+- **Back-end**:![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+- **Front-end**: Livewire ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white), ![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=white)
+- **Gráficos**:![Chart.js](https://img.shields.io/badge/Chart.js-F5788D?style=for-the-badge&logo=chart.js&logoColor=white)
+- **Banco de Dados**: ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+- **Controle de Versão**: Git ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white), ![GitLab](https://img.shields.io/badge/GitLab-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white)
 
 ---
 
@@ -32,15 +32,17 @@ Um sistema simples e intuitivo para gerenciar suas finanças pessoais e empresar
 
 ## 📝 Pré-requisitos
 Antes de rodar o projeto, certifique-se de ter instalado:
-- **PHP 8.0+** ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
-- **Composer** ![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)
-- **MySQL** ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+- ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white) **8.0+**
+- ![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)
+- ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
 ---
 
 ## ⚙️ Instalação
 
 Siga os passos abaixo para rodar o projeto localmente:
+- MailTrap para captura de e-mail para confirmação de cadastro
+- Stripe para gerenciamento de assinaturas 
 
 ```bash
 # Clone o repositório
