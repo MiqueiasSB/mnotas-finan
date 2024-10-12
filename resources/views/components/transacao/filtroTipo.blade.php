@@ -7,7 +7,8 @@
         </span>
     @endif
 
-</button>
+</button>  
+
 
 <!-- Modal -->
 <div wire:ignore.self class="modal fade" id="modalFiltroTipo" tabindex="-1" aria-labelledby="modalFiltroTipoLabel"
