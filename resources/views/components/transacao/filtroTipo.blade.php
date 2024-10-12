@@ -7,8 +7,7 @@
         </span>
     @endif
 
-</button>  
-
+</button>
 
 <!-- Modal -->
 <div wire:ignore.self class="modal fade" id="modalFiltroTipo" tabindex="-1" aria-labelledby="modalFiltroTipoLabel"
@@ -24,98 +23,64 @@
 
                 <h4>Categorias</h4>
                 @foreach (['Receita', 'Despesa'] as $tipo)
-                <div class="pt-2 ps-3" wire:key="{{ $tipo }}">
-                    {{-- Check TIPO Principal --}}
-                    <div class="form-check fs-5">
-                        <input class="form-check-input" type="checkbox" id="check{{ $tipo }}"
-                            @change="
-                                document.querySelectorAll('.check-filho-{{ $tipo }}').forEach(el => {
-                                    if (el.checked !== $event.target.checked) {
-                                        el.click(); // Simula o clique nos filhos
-                                    }
-                                })
-                            "
-                            wire:model.live="filtro.tipo.{{ $tipo }}.status"
-                            x-ref="checkPai{{ $tipo }}">
-                        <label class="form-check-label" for="check{{ $tipo }}">
-                            {{ 'Todas as ' . $tipo . 's' }}
-                        </label>
+                    <div class="pt-2 ps-3" wire:key="{{ $tipo }}" x-data="{
+                        isParentChecked: @entangle('filtro.tipo.' . $tipo . '.status').live,
+                    }">
+                        {{-- Check TIPO Principal --}}
+                        <div class="form-check fs-5">
+                            <input class="form-check-input" type="checkbox" id="check{{ $tipo }}"
+                                wire:model.live="filtro.tipo.{{ $tipo }}.status"
+                                @change="document.querySelectorAll('.check-filho-{{ $tipo }}').forEach(el => el.disabled = !$event.target.checked)"
+                                x-bind:checked="isParentChecked">
+                            <label class="form-check-label" for="check{{ $tipo }}">
+                                {{ 'Todas as ' . $tipo . 's' }}
+                            </label>
+                        </div>
+
+                        {{-- Categoria Genérica em destaque --}}
+                        <div class="form-check ms-5">
+                            <input class="form-check-input check-filho-{{ $tipo }}" type="checkbox"
+                                id="check{{ $tipo }}SemCategoria"
+                                wire:model.live="filtro.tipo.{{ $tipo }}.categorias.{{ $this->idsTipoSemCategorias[$tipo] }}.status"
+                                wire:ignore :disabled="!isParentChecked">
+                            <label class="form-check-label" for="check{{ $tipo }}SemCategoria">
+                                {{ $tipo . 's sem categorias' }}
+                            </label>
+                        </div>
+
+                        {{-- Lista checks para categorias específicas --}}
+                        @foreach ($this->filtro['tipo'][$tipo]['categorias'] as $key => $categoria)
+                            @if ($categoria['id'] != 1 && $categoria['id'] != 2)
+                                <div class="form-check ms-5" wire:key="{{ 'check_' . $key }}">
+                                    <input class="form-check-input check-filho-{{ $tipo }}" type="checkbox"
+                                        id="check{{ $categoria['nome'] }}"
+                                        wire:model.live="filtro.tipo.{{ $tipo }}.categorias.{{ $key }}.status"
+                                        wire:ignore :disabled="!isParentChecked">
+                                    <label class="form-check-label" for="check{{ $categoria['nome'] }}">
+                                        {{ $categoria['nome'] }}
+                                    </label>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
-            
-                    {{-- Categoria Genérica em destaque --}}
-                    <div class="form-check ms-5">
-                        <input class="form-check-input check-filho-{{ $tipo }}" type="checkbox"
-                            id="check{{ $tipo }}SemCategoria"
-                            wire:model.live="filtro.tipo.{{ $tipo }}.categorias.{{ $this->idsTipoSemCategorias[$tipo] }}.status"
-                            wire:ignore
-                            @change="
-                                if ($event.target.checked) { 
-                                    $refs.checkPai{{ $tipo }}.checked = true; 
-                                    $refs.checkPai{{ $tipo }}._skip = true; 
-                                } else {
-                                    let allUnchecked = [...document.querySelectorAll('.check-filho-{{ $tipo }}')].every(el => !el.checked);
-                                    if (allUnchecked) {
-                                        $refs.checkPai{{ $tipo }}.checked = false; 
-                                    }
-                                }
-                            ">
-                        <label class="form-check-label" for="check{{ $tipo }}SemCategoria">
-                            {{ $tipo . 's sem categorias' }}
-                        </label>
-                    </div>
-            
-                    {{-- Lista checks para categorias específicas --}}
-                    @foreach ($this->filtro['tipo'][$tipo]['categorias'] as $key => $categoria)
-                        @if ($categoria['id'] != 1 && $categoria['id'] != 2)
-                            <div class="form-check ms-5" wire:key="{{ 'check_'.$key }}">
-                                <input class="form-check-input check-filho-{{ $tipo }}" type="checkbox"
-                                    id="check{{ $categoria['nome'] }}"
-                                    wire:model.live="filtro.tipo.{{ $tipo }}.categorias.{{ $key }}.status"
-                                    wire:ignore
-                                    @change="
-                                        if ($event.target.checked) { 
-                                            $refs.checkPai{{ $tipo }}.checked = true; 
-                                            $refs.checkPai{{ $tipo }}._skip = true; 
-                                        } else {
-                                            let allUnchecked = [...document.querySelectorAll('.check-filho-{{ $tipo }}')].every(el => !el.checked);
-                                            if (allUnchecked) {
-                                                $refs.checkPai{{ $tipo }}.checked = false; 
-                                            }
-                                        }
-                                    ">
-                                <label class="form-check-label" for="check{{ $categoria['nome'] }}">
-                                    {{ $categoria['nome'] }}
-                                </label>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-            @endforeach
-            
-            <script>
-                document.addEventListener('alpine:init', () => {
-                    Alpine.data('toggleChecks', () => ({
-                        init() {
-                            this.$watch('$store.livewire', () => {
-                                this.setupListeners();
-                            });
-                        },
-                        setupListeners() {
-                            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                                checkbox.addEventListener('change', (event) => {
-                                    // Skip if marked to avoid recursion
-                                    if (event.target._skip) {
-                                        event.target._skip = false;
-                                        return;
+                @endforeach
+
+                <script>
+                    document.addEventListener('alpine:init', () => {
+                        Alpine.data('toggleChecks', () => ({
+                            init() {
+                                // Set the initial state of the checkboxes based on the parent checkbox
+                                document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+                                    const parentCheckbox = el.closest('div').querySelector(
+                                        '.form-check-input[type="checkbox"]');
+                                    if (parentCheckbox && !parentCheckbox.checked) {
+                                        el.disabled = true;
                                     }
                                 });
-                            });
-                        }
-                    }));
-                });
-            </script>
-            
-
+                            }
+                        }));
+                    });
+                </script>
 
             </div>
             <div class="modal-footer">
