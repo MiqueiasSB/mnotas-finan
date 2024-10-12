@@ -1,0 +1,243 @@
+[33mcommit 3b6b01b90110e34fd9710330c6360aefdf047dfc[m[33m ([m[1;36mHEAD -> [m[1;32mv1.0[m[33m)[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Fri May 3 11:32:37 2024 -0300
+
+    grafico de categorias sem zips
+
+[33mcommit e5a61e208d28a4ff802035d7a430ba562815866c[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Fri May 3 11:29:10 2024 -0300
+
+    grafico de categorias sem zip
+
+[33mcommit 250f70488b6ea0256513ef8071aa96d921b32673[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Fri May 3 11:25:57 2024 -0300
+
+    grafico de categorias
+
+[33mcommit 183dae20d1b4001b1e0b6945c113ff7002a809e1[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Tue Apr 30 01:46:00 2024 -0300
+
+    dia de inicio da semana - painel
+
+[33mcommit 2f44c89702b244c6355a08dd68c12b55d00d0ca9[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Tue Apr 30 00:19:27 2024 -0300
+
+    pequena alteração na responsividade do item lista de transacao
+
+[33mcommit b8ee374de7a5ad9f9f4bae60724bd4d1cdfbf687[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Apr 29 23:55:34 2024 -0300
+
+    atualizando somas de vendas
+
+[33mcommit 0e65a28b0c4151a1806862448d643e39a9b8531e[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Fri Apr 26 12:16:03 2024 -0300
+
+    correçoes de bugs em categorias e som de vendas
+
+[33mcommit 83a24710614f5290792f22f33ddc0b0677b3d41a[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Apr 25 15:38:38 2024 -0300
+
+    grafico despesas por categoria
+
+[33mcommit 1fbe7b6858e7cbb402d4411e24e1c95c33bacab6[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Apr 25 14:41:57 2024 -0300
+
+    Soma no painel diario
+
+[33mcommit 083b18d0e375965d0df146884bf5e97c698449d3[m[33m ([m[1;31morigin/v1.0[m[33m)[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Tue Apr 23 19:53:58 2024 -0300
+
+    primeira tentativa 23-04 producao
+
+[33mcommit e97c9ec43e7962a4e0a7108962042ac1ecd7f91d[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Tue Apr 23 10:51:25 2024 -0300
+
+    responsividade categorias
+
+[33mcommit e5c956cf9611f64e59068a4933a791dee02f06d5[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Tue Apr 23 10:40:40 2024 -0300
+
+    responsividade Transacoes
+
+[33mcommit 6ae21fe1c2be493bb1483405de057adafb6bcee9[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Apr 22 16:48:05 2024 -0300
+
+    grafico lucro
+
+[33mcommit 2392d7746b57afffdf0daf0e2fe529147d394209[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Apr 22 14:29:08 2024 -0300
+
+    config horario aplicado nos graficos
+
+[33mcommit 4fb048627b3473e1ec94a483fb39be3775595260[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Apr 22 13:43:56 2024 -0300
+
+    adicionei configuraçoes e horaio de trabalho
+
+[33mcommit e163a55c5adbfd0f67250785d725155ff63480b0[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Apr 22 10:17:16 2024 -0300
+
+    navegação dia - filtro Venda
+
+[33mcommit 6be2bd8830d87b4fa252db8eede03b30a5a55677[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Fri Apr 19 21:53:02 2024 -0300
+
+    logica grafico Formas de pagamento
+
+[33mcommit 74919b005bc4c1b2d188a93df609ada48129b3ea[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Fri Apr 19 16:05:06 2024 -0300
+
+    Painel- despesaSoma ReceitaSoma
+
+[33mcommit 786dee42be8c2b475678fea03ce47e40b96e1fae[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Apr 15 17:15:39 2024 -0300
+
+    correçoes pontuais, em consulta de tipos, cores na lista transacoes e outras
+
+[33mcommit a055796e8c0f8ee12789e3922f71df69b20f594f[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Apr 11 19:19:42 2024 -0300
+
+    pequenos ajustes nos itens de transação
+
+[33mcommit ac4eb90656141abc1142fa1e392c92b4a293dc3c[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Apr 11 18:45:39 2024 -0300
+
+    visualizaçao de tipos de transacoes e classivicação no layoute
+
+[33mcommit cf62f7e1511659bee7d3b06ed48fe40acec1a2f8[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Apr 11 16:48:47 2024 -0300
+
+    atualização do BD, relacionamento categorias-usuario-cliente
+
+[33mcommit 5c765ff43d4ec6c5441f28520286c1a8b8c3a89f[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Apr 11 14:46:04 2024 -0300
+
+    atualização de categorias, referênte ao user_id e remoção da forma de pagamento
+
+[33mcommit 383a863f7dccae1e2017a67c5decf52da635cd4d[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Wed Apr 10 16:41:24 2024 -0300
+
+    select Categorias funcional
+
+[33mcommit e0550afce6d02664e6b36367fd6b0732a9cee8d5[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Wed Apr 10 13:59:12 2024 -0300
+
+    alteração do BD em item Transacoes para string
+
+[33mcommit 387b32dc647fd8ec5a6c8ba693a911dfcb650331[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Fri Apr 5 15:16:41 2024 -0300
+
+    resolvi o erro do btn forma_pagamento
+
+[33mcommit c3a53b35fae20e78e13228fce3561f060f5fcc29[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Apr 1 14:56:58 2024 -0300
+
+    otimização na nomenclatura e fluxo de rotas entre componentes livewire- transacoes, clientes
+
+[33mcommit 4ecd5b352bad10a1c469a6755c4703caf695037a[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Apr 1 11:48:23 2024 -0300
+
+    Add soma Total no Painel
+
+[33mcommit 4dabf91fdbd8af6795579c2fac246d346cea9b98[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Mar 30 13:31:51 2024 -0300
+
+    calculo de grafico soma vendas  por periodo, pequena logica de botão tipoGrafico(comentada)
+
+[33mcommit 99cac8d5658d615d760139f640217b50bdfa5f1c[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Mar 28 13:23:56 2024 -0300
+
+    desmenbrando componente painel de componente grafico - funcional (sonciderando testes iniciais)
+
+[33mcommit 37a7d971b9759822f866627beb41615def63482c[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Mar 28 13:08:19 2024 -0300
+
+    desmenbrando componente painel de componente grafico - em processo
+
+[33mcommit def2b4e2d1adcbec78c4e93b478f4f94c5435cb9[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Wed Mar 27 15:28:28 2024 -0300
+
+    navegação entre as periodos anteriores e posteriores
+
+[33mcommit 61f7e495d06546ba359b396a47cdd5c47fc95a9d[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Wed Mar 27 12:33:00 2024 -0300
+
+    ajuste nas datas referente a semana
+
+[33mcommit dcf80fe8a0b2a72df3bbff78450c05441e75b8a3[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Tue Mar 26 14:54:31 2024 -0300
+
+    funções e alteração de datas - legenda do grafico - div de carregamento
+
+[33mcommit 10fb75bb987f917ba907ef83ed1cccf1d9e78714[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Mar 25 18:21:36 2024 -0300
+
+    retorno visual das funções de data
+
+[33mcommit e2d2464c8502b7619831194ea573fee9359b589e[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Mon Mar 25 17:21:35 2024 -0300
+
+    logica de datas - semana, mês, ano
+
+[33mcommit 7c63020b9bb88ef2577f4f072a2c90c177e0760c[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Mar 21 15:50:32 2024 -0300
+
+    mascara preço
+
+[33mcommit 97de9e072db3ba730dde3115a160333fbfaa0096[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Fri Mar 15 16:55:37 2024 -0300
+
+    componentizando itens da lista
+
+[33mcommit eda6c608839edcd879b34a0f47699f543a883a96[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Fri Mar 15 15:17:45 2024 -0300
+
+    ajuste botão Forma de pagamento
+
+[33mcommit fe1aa9296a31b6b72f77467fdfe178fc99b5e057[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Mar 14 14:54:57 2024 -0300
+
+    produção v1.0 14/03
+
+[33mcommit 535a9f7bf1519c3ed338b632b883940468828767[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Thu Mar 14 13:58:04 2024 -0300

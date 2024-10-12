@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
+
+$theme-colors: ('primary': #2563eb,
+
+    'secondary': #ffb031,
+    'success': #10b981,
+    'success-light': #58d8ad,
+    'info': #3498db,
+    'warning': #F59E0B,
+    'warning-light': #f8d496,
+
+    'danger': #dc2626,
+    'danger-light': #fa988b,
+    'light': #ecf0f1,
+    'light-opacity-peimary': #4377e6,
+    'dark': #7b8a8b,
+
+    'back-primary': #F4F4F5, 
+    'back-secondary':rgb(13, 13, 13),
+
+    'white': #fff,
+    'gray-100': #f8f9fa,
+    'gray-200': #ecf0f1,
+    'gray-300': #dee2e6,
+    'gray-400': #ced4da,
+    'gray-500': #b4bcc2,
+    'gray-600': #95a5a6,
+    'gray-700': #7b8a8b,
+    'gray-800': #343a40,
+    'gray-900': #212529,
+    'black': #000,
+
+
+    'blue': #2c3e50,
+    'indigo': #6610f2,
+    'purple': #6f42c1,
+    'pink': #e83e8c,
+    'red': #e74c3c,
+    'orange': #fd7e14,
+    'yellow': #f39c12,
+    'green': #18bc9c,
+    'teal': #20c997,
+    'cyan': #3498db,
+
+);
+
+// Loop para gerar classes de sombra para todas as cores e tamanhos
+@each $color, $value in $theme-colors {
+    // Loop para tamanhos de sombra do Bootstrap
+    @each $size in ('', '-sm', '-lg', '-xl', '-none') {
+      // Adicione a classe de sombra correspondente
+      .shadow#{$size}-#{$color} {
+        @if $size == '-none' {
+          box-shadow: none !important; // Remova a sombra se for "shadow-none"
+        } @else {
+          $shadowValue: if($size == '-sm', 0 .125rem .25rem rgba($value, 0.075),
+                        if($size == '-lg', 0 1rem 3rem rgba($value, 0.175),
+                        if($size == '-xl', 0 2rem 5rem rgba($value, 0.3),
+                        0 0.5rem 1rem rgba($value, 0.15))));
+          box-shadow: $shadowValue;
+        }
+      }
+    }
+  }
