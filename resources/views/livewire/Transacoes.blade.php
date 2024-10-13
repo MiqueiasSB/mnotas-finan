@@ -14,6 +14,7 @@
 
         <x-slot name="header">
             <div class="d-none d-sm-block">
+                
                 <x-transacao.formCreate></x-transacao.formCreate>
             </div>
 
