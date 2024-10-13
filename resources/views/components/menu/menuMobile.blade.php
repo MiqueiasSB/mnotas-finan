@@ -88,7 +88,7 @@
                 <div class="bg-success-light rounded-bottom text-center py-2">
                     <a class="text-underline-none text-light fw-bold" style="text-decoration: none"
                         href=" {{ route('planos') }}">
-                        <i>Você aproveitando o periodo gratuito!</i>
+                        <i>Você está aproveitando o periodo gratuito!</i>
                     </a>
                 </div>
             </div>

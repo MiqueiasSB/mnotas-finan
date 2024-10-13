@@ -47,10 +47,56 @@
                         <small>
                             @if (empty($this->cliente))
                                 <div class="row align-items-center">
-                                    <span class="col-12 ">
-                                        <i class="bi bi-clock"></i>
-                                        {{ $item->created_at->format('H:i') }}
+                                    <span>
+                                        @if (empty($this->cliente))
+                                            <div class="row align-items-center">
+                                                <spam class="col-12 ">
+                                                    @switch($this->tipoPeriodo)
+                                                        @case('Diário')
+                                                            <i class="bi bi-clock"></i> 
+                                                            {{ $item->created_at->format('H:i') }}
+                                                        @break
+            
+                                                        @case('Mensal')
+                                                            <i class="bi bi-calendar-event-fill"></i> 
+                                                            {{ \Carbon\Carbon::parse($item->data)->format('d -') }}
+                                                            {{ $item->created_at->format('H:i') }}
+                                                        @break
+            
+                                                        @case('Anual')
+                                                            <i class="bi bi-calendar-event-fill"></i> 
+                                                            {{ \Carbon\Carbon::parse($item->data)->format('d/m -') }}
+                                                            {{ $item->created_at->format('H:i') }}
+                                                        @break
+            
+                                                        @case('Personalizado')
+                                                            <i class="bi bi-calendar-event-fill"></i> 
+                                                            {{ \Carbon\Carbon::parse($item->data)->format('d/m/y -') }}
+                                                            {{ $item->created_at->format('H:i') }}
+                                                        @break
+                                                    @endswitch
+                                                </spam>
+            
+            
+            
+                                                @if (!empty($item->cliente_id))
+                                                    <a class="col-12 link-underline link-underline-opacity-0 text-light"
+                                                        href="/clientes/{{ $item->cliente_id }}">
+                                                    
+                                                        <i class="bi bi-person-circle"></i> 
+                                                        {{ $this->clientesArrayId[$item->cliente_id]->nome ?? '' }}
+            
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        @else
+                                            <small>
+                                                <i class="bi bi-calendar-event"></i>
+                                                {{ $item->created_at->format('d/m/Y H:i') }}
+                                            </small>
+                                        @endif
                                     </span>
+            
                                 </div>
                             @else
                                 <small>

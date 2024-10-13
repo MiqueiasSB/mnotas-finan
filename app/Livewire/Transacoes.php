@@ -133,7 +133,6 @@ class Transacoes extends Component {
             $this->transacoesPeriodo =   $this->filtrarTransacoes()
                 ->whereDate('data', '<= ', $this->dataFinal)
                 ->whereDate('data_final', '>= ', $this->dataInicial)
-                ->orderBy('created_at', 'desc')
                 ->get();
 
             // Ordenar transações por período mais longo
@@ -142,7 +141,7 @@ class Transacoes extends Component {
                 $dataFinal = new DateTime($transacao->data_final);
                 return $dataInicio->diff($dataFinal)->days;
             });
-
+            
             $this->transacoesPeriodo = $this->transacoesPeriodo->sortByDesc(function ($transacao) {
                 $dataInicio = new DateTime($transacao->data);
                 $dataFinal = new DateTime($transacao->data_final);
@@ -150,7 +149,7 @@ class Transacoes extends Component {
             });
 
 
-            // Filtrar transaçõesPeriodo para remover as transações que já estão em transacoes
+            // Filtrar transaçõesPeriodo para remover as transações que já estão em 'transacoes'
             $this->transacoesPeriodo = $this->transacoesPeriodo->reject(function ($transacao) {
                 return $this->transacoes->contains('id', $transacao->id);
             });
@@ -188,6 +187,7 @@ class Transacoes extends Component {
         //Seta para corresponder a um valor padrão, um modelo para comparar modificações e saber se tem um filtro aplicado
         $this->filtroModelo = $this->filtro;
     }
+
     public function defineIdsTipoSemCategorias() {
 
         $this->idsTipoSemCategorias = ['Receita' => '', 'Despesa' => ''];
@@ -210,7 +210,7 @@ class Transacoes extends Component {
     }
 
     private function filtrarTransacoes() {
-        $query = Transacao::where('user_id', auth()->id()); // ou $this->user->id se você tiver acesso ao usuário
+        $query = Transacao::where('user_id', auth()->id())->orderByDesc('data'); // ou $this->user->id se você tiver acesso ao usuário
 
         foreach (['Receita', 'Despesa'] as $tipo) {
             $status = $this->filtro['tipo'][$tipo]['status'];
