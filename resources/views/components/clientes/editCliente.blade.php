@@ -43,7 +43,7 @@
 
                     <div class="col-lg-7 form-group">
                         <label for="nome">Nome</label>
-                        <input type="text" required class="form-control" value="{{ $cliente->nome }}" name="nome"
+                        <input type="text" required class="form-control text-capitalize" value="{{ $cliente->nome }}" name="nome"
                             id="nome" placeholder="Digite seu nome">
                     </div>
 

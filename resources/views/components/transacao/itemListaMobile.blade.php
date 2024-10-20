@@ -80,7 +80,7 @@
             
             
                                                 @if (!empty($item->cliente_id))
-                                                    <a class="col-12 link-underline link-underline-opacity-0 text-light"
+                                                    <a class="col-12 link-underline link-underline-opacity-0 text-light text-capitalize"
                                                         href="/clientes/{{ $item->cliente_id }}">
                                                     
                                                         <i class="bi bi-person-circle"></i> 
