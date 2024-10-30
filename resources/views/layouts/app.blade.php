@@ -54,7 +54,7 @@
     </div>
 
     <!-- Div para a versão -->
-    <div class="text-end opacity-25 pb-1 pe-1">
+    <div class="text-end d-sm-block d-none opacity-25 pb-1 pe-1">
         <small>{{ env('APP_VERSION') }}</small>
     </div>
 </body>

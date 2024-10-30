@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Livewire;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 
 use App\Models\CategoriaTransacao;
 use App\Models\Cliente;
@@ -155,6 +157,9 @@ class Transacoes extends Component {
             });
         }
 
+        $this->transacoes = $this->transacoes->paginate(2)->items();
+        
+       //dd($this->transacoes->links());
         return view('livewire.Transacoes');
     }
 
