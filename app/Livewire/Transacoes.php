@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire;
+
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 
@@ -25,6 +26,8 @@ class Transacoes extends Component {
 
         $transacoes,
         $transacao,
+        $quantPaginas = 2,
+        $paginateTransacao,
 
         $transacoesPeriodo = [],
 
@@ -41,7 +44,7 @@ class Transacoes extends Component {
         $tipoPeriodo = 'Diário',
         $filtro,
         $filtroModelo, // Corresponde ao valor padrão, no caso sem filtro
-        $idsTipoSemCategorias,// Serve para guardar os ids especificos para colocar em destaque as transaçõs sem categoria
+        $idsTipoSemCategorias, // Serve para guardar os ids especificos para colocar em destaque as transaçõs sem categoria
         $categorias, //Todas as categorias cadastradas
         $categoriaSelecionada = 'Receita',
         $tipoSelecionado = 0,
@@ -95,10 +98,12 @@ class Transacoes extends Component {
 
             switch ($this->tipoPeriodo) {
                 case 'Diário':
-                    $this->transacoes = $this->transacoes
-                        ->whereDate('data', $this->dataAtual)
-                        ->orderBy('created_at', 'desc')
+                    $this->transacoes = Transacao::whereDate('data', $this->dataAtual)
+                        ->selectRaw('*, DATEDIFF(data_final, data) as periodo') // Calcula o período no banco de dados
+                        ->orderByDesc('periodo') // Ordena pelo período diretamente
+                        ->orderByDesc('created_at') // Ordena por data de criação se necessário
                         ->get();
+                        //->paginate($this->quantPaginas); // Define a paginação normalmente
                     break;
 
                 case 'Mensal':
@@ -110,7 +115,7 @@ class Transacoes extends Component {
                         ->whereYear('data_final', $year)
                         ->whereMonth('data_final', $month)
                         ->orderBy('created_at', 'desc')
-                        ->get();
+                        ->paginate($this->quantPaginas);
                     break;
 
                 case 'Anual':
@@ -119,7 +124,7 @@ class Transacoes extends Component {
                     $this->transacoes = $this->transacoes
                         ->whereYear('data', $this->dataAtual)
                         ->orderBy('created_at', 'desc')
-                        ->paginate(200);
+                        ->paginate($this->quantPaginas);
                     break;
 
                 case 'Personalizado':
@@ -127,23 +132,16 @@ class Transacoes extends Component {
                         ->whereDate('data', '>=', $this->dataInicial)
                         ->whereDate('data_final', '<=', $this->dataFinal)
                         ->orderBy('created_at', 'desc')
-                        ->get();
+                        ->paginate($this->quantPaginas);
 
                     break;
             }
 
             $this->transacoesPeriodo =   $this->filtrarTransacoes()
-                ->whereDate('data', '<= ', $this->dataFinal)
-                ->whereDate('data_final', '>= ', $this->dataInicial)
+                ->whereDate('data', '< ', $this->dataFinal)
+                ->whereDate('data_final', '> ', $this->dataInicial)
                 ->get();
 
-            // Ordenar transações por período mais longo
-            $this->transacoes = $this->transacoes->sortByDesc(function ($transacao) {
-                $dataInicio = new DateTime($transacao->data);
-                $dataFinal = new DateTime($transacao->data_final);
-                return $dataInicio->diff($dataFinal)->days;
-            });
-            
             $this->transacoesPeriodo = $this->transacoesPeriodo->sortByDesc(function ($transacao) {
                 $dataInicio = new DateTime($transacao->data);
                 $dataFinal = new DateTime($transacao->data_final);
@@ -157,9 +155,12 @@ class Transacoes extends Component {
             });
         }
 
-        $this->transacoes = $this->transacoes->paginate(2)->items();
-        
-       //dd($this->transacoes->links());
+        //$this->paginateTransacao = $this->transacoes->paginate(2)->items();// Não atribui sem o itmems()
+        // $this->transacoes = $this->transacoes;
+        //$this->paginateTransacao = $this->transacoes->paginate(2);
+        //$this->transacoes = $this->paginateTransacao->items();
+
+        // dd($this->transacoes);
         return view('livewire.Transacoes');
     }
 
@@ -199,15 +200,13 @@ class Transacoes extends Component {
 
         foreach (['Receita', 'Despesa'] as $key => $tipo) {
             $categorias = $this->filtro['tipo'][$tipo]['categorias'];
-           
+
             foreach ($categorias as $key => $categoria) {
                 if ($categoria['nome'] == $tipo) {
                     $this->idsTipoSemCategorias[$tipo] = $key;
                 }
             }
         }
-            
-    
     }
 
     public function limparFiltro() {
@@ -216,7 +215,7 @@ class Transacoes extends Component {
 
     private function filtrarTransacoes() {
         $query = Transacao::where('user_id', auth()->id())->orderByDesc('data'); // ou $this->user->id se você tiver acesso ao usuário
-
+        //dd($query);
         foreach (['Receita', 'Despesa'] as $tipo) {
             $status = $this->filtro['tipo'][$tipo]['status'];
 

@@ -1,14 +1,16 @@
 <div class="mt-2">
-
+    @php
+    $this->transacoes = $this->transacoes->paginate($this->quantPaginas);
+@endphp
     <div class="row gy-2">
         @if (empty($this->cliente))
             <x-transacao.filtroIndex></x-transacao.filtroIndex>
         @endif
 
         <x-transacao.viewTransacao></x-transacao.viewTransacao>
-
+        
         @if (count($this->transacoes) !== 0){{-- Verifica se objeto é vazio --}}
-
+        
             @foreach ($this->transacoes as $transacao)
                 <div class="d-none d-sm-block">
                     <x-transacao.itemLista :item="$transacao"></x-transacao.itemLista>
@@ -54,7 +56,8 @@
             </div>
         @endif
 
-        {{--$this->paginatedItems->links() --}}    
+        
+       
     </div>
 
 </div>

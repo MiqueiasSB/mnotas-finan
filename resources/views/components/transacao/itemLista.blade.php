@@ -1,9 +1,7 @@
 <div wire:key="{{ $item->id }}" class="col-12">
 
     @php
-
         $categoria = $this->categorias->find($item->categoria_id);
-
     @endphp
 
     <div class="card ItemLista animate text-light" x-on:click="view = !view" wire:click="view({{ $item->id }})"
@@ -13,8 +11,7 @@
         style="{{ $this->corItem($categoria->tipo) }}" x-on:mouseenter="hoverItem = true"
         x-on:mouseleave="hoverItem = false"
         @if (!empty($item->cliente_id) && empty($this->cliente)) @click="window.location.href = '/clientes/{{ $item->cliente_id }}'"
-        @else 
-            data-bs-toggle="modal" data-bs-target="#viewTransacao" @endif>
+        @else data-bs-toggle="modal" data-bs-target="#viewTransacao" @endif>
 
 
         <div class="card-body py-2 gy-2 row align-items-center">
