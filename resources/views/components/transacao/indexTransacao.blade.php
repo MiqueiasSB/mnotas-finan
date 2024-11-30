@@ -1,6 +1,6 @@
 <div class="mt-2">
     @php
-    $this->transacoes = $this->transacoes->paginate($this->quantPaginas);
+    //$this->transacoes = $this->transacoes->paginate($this->quantPaginas);
 @endphp
     <div class="row gy-2">
         @if (empty($this->cliente))

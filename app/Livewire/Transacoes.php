@@ -115,7 +115,8 @@ class Transacoes extends Component {
                         ->whereYear('data_final', $year)
                         ->whereMonth('data_final', $month)
                         ->orderBy('created_at', 'desc')
-                        ->paginate($this->quantPaginas);
+                        ->get();
+                        //->paginate($this->quantPaginas);
                     break;
 
                 case 'Anual':
@@ -124,7 +125,8 @@ class Transacoes extends Component {
                     $this->transacoes = $this->transacoes
                         ->whereYear('data', $this->dataAtual)
                         ->orderBy('created_at', 'desc')
-                        ->paginate($this->quantPaginas);
+                        ->get();
+                        //->paginate($this->quantPaginas);
                     break;
 
                 case 'Personalizado':
@@ -132,7 +134,8 @@ class Transacoes extends Component {
                         ->whereDate('data', '>=', $this->dataInicial)
                         ->whereDate('data_final', '<=', $this->dataFinal)
                         ->orderBy('created_at', 'desc')
-                        ->paginate($this->quantPaginas);
+                        ->get();
+                        //->paginate($this->quantPaginas);
 
                     break;
             }
