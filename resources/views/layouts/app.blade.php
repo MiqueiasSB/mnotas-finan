@@ -25,10 +25,10 @@
         integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-    
+
 </head>
 
-<body class="bg-back-primary " x-data="{
+<body class="bg-back-primary d-flex flex-column min-vh-100" x-data="{
     larguraTela: window.innerWidth,
     responsivo: {
         'xl': 1200,
@@ -47,15 +47,17 @@
     </div>
 
     <!-- Conteúdo Principal -->
-    <div id="app" class="p-3 container mb-sm-0 mb-5">
+    <div id="app" class="p-3 container flex-grow-1 mb-sm-0 mb-5">
         <div class="mb-sm-0 mb-3">{{-- Pra compensar o menu mobile --}}
             @yield('content')
         </div>
-
-    </div>
     </div>
 
-
+    <!-- Div para a versão -->
+    <div class="text-end d-sm-block d-none opacity-25 pb-1 pe-1">
+        <small>{{  config('app.version') }}</small>
+    </div>
 </body>
+
 
 </html>

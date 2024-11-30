@@ -1,7 +1,7 @@
 <div class="col-12">
     <div class="d-flex flex-sm-row flex-column gap-3 my-1 justify-content-sm-between justify-content-center">
       
-        <div class="d-flex">
+        <div class="d-flex"> 
             <div class="form-floating me-2">
                 <select class="form-select" wire:model.live="tipoPeriodo" aria-label="tipoPeriodo">
                     <option value="Diário">Diário</option>

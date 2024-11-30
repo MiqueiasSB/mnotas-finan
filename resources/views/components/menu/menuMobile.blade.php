@@ -1,10 +1,17 @@
 <div>
     {{-- MENU SIMPLES TOPO --}}
     <nav class="z-3 navbar navbar-expand-md bg-primary shadow">
+        <!-- Div para a versão -->
+        <div class="text-white text-end position-absolute top-0 end-0 opacity-25 pb-1 pe-1">
+            <small>{{ config('app.version') }}</small>
+        </div>
         <div class="container">
+
+
             <a class="navbar-brand text-light logo pe-2" href="{{ url('/') }}">
                 <x-icons.imgLogo largura="130"></x-icons.imgLogo>
             </a>
+
 
             @guest
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -51,7 +58,7 @@
             @endguest
         </div>
 
- 
+
     </nav>
 
     {{-- MENU PRINCIPAL FIXO BUTTON --}}
@@ -59,10 +66,13 @@
         @if (auth()->user()->hasVerifiedEmail())
             <nav class="fixed-bottom shadow-lg border-top">
                 <div class="bg-light py-3 d-flex flex-row text-center">
-                    <x-menu.linkMenuMobile label="Categorias" rota="categorias" icon="bi bi-archive-fill"></x-menu.linkMenuMobile>
+                    <x-menu.linkMenuMobile label="Categorias" rota="categorias"
+                        icon="bi bi-archive-fill"></x-menu.linkMenuMobile>
                     <x-menu.linkMenuMobile label="Painel" rota="painel" icon="bi bi-grid-1x2-fill"></x-menu.linkMenuMobile>
-                    <x-menu.linkMenuMobile label="Transações" rota="vendas" icon="bi bi-arrow-left-right"></x-menu.linkMenuMobile>
-                    <x-menu.linkMenuMobile label="Clientes" rota="clientes.index" icon="bi bi-people-fill"></x-menu.linkMenuMobile>
+                    <x-menu.linkMenuMobile label="Transações" rota="vendas"
+                        icon="bi bi-arrow-left-right"></x-menu.linkMenuMobile>
+                    <x-menu.linkMenuMobile label="Clientes" rota="clientes.index"
+                        icon="bi bi-people-fill"></x-menu.linkMenuMobile>
                     @if (!auth()->user()->subscribed)
                         <x-menu.linkMenuMobile label="Planos" rota="planos" icon="bi bi-bag-fill"></x-menu.linkMenuMobile>
                     @endif
@@ -71,9 +81,9 @@
         @endif
     @endauth
 
-    
+
     @if (Auth::check())
-    @if (is_Null(Auth::user()->subscription('default')))
+        @if (is_Null(Auth::user()->subscription('default')))
             <div class="container">
                 <div class="bg-success-light rounded-bottom text-center py-2">
                     <a class="text-underline-none text-light fw-bold" style="text-decoration: none"
@@ -82,13 +92,12 @@
                     </a>
                 </div>
             </div>
-    
         @elseif (Auth::user()->subscription('default')->onTrial())
             <div class="container">
                 <div class="bg-success-light rounded-bottom text-center py-2">
                     <a class="text-underline-none text-light fw-bold" style="text-decoration: none"
                         href=" {{ route('planos') }}">
-                        <i>Você aproveitando o periodo gratuito!</i>
+                        <i>Você está aproveitando o periodo gratuito!</i>
                     </a>
                 </div>
             </div>
