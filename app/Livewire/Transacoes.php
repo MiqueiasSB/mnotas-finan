@@ -98,7 +98,8 @@ class Transacoes extends Component {
 
             switch ($this->tipoPeriodo) {
                 case 'Diário':
-                    $this->transacoes = Transacao::whereDate('data', $this->dataAtual)
+                    $this->transacoes = Transacao::where('user_id', $this->user->id)
+                        ->whereDate('data', $this->dataAtual)
                         ->selectRaw('*, DATEDIFF(data_final, data) as periodo') // Calcula o período no banco de dados
                         ->orderByDesc('periodo') // Ordena pelo período diretamente
                         ->orderByDesc('created_at') // Ordena por data de criação se necessário

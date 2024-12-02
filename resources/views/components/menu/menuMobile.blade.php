@@ -7,11 +7,9 @@
         </div>
         <div class="container">
 
-
             <a class="navbar-brand text-light logo pe-2" href="{{ url('/') }}">
                 <x-icons.imgLogo largura="130"></x-icons.imgLogo>
             </a>
-
 
             @guest
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
