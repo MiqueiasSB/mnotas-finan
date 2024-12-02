@@ -1,0 +1,135 @@
+[33mcommit 478a0ff99b2257fb81535fa325669646cb13ef52[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sun Dec 1 22:31:49 2024 -0300
+
+    correção em produlção - mistura de transações- sem zip
+
+[33mcommit 101b54dddb2c49a7290f2c7c5e4a78a763eef587[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sun Dec 1 22:30:22 2024 -0300
+
+    correção em produlção - mistura de transações
+
+[33mcommit 9c01da040754c62ed72701314f793231b28daead[m[33m ([m[1;31morigin/master[m[33m)[m
+Merge: f2a6eec 4c1bacc
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Nov 30 19:20:48 2024 +0000
+
+    Merge branch 'develop' into 'master'
+    
+    Develop
+    
+    See merge request miqueiasbraga2001/mnotas-financas!3
+
+[33mcommit 4c1bacc7be043ab205f83c1e4a7eff33ead544b9[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Nov 30 16:18:34 2024 -0300
+
+    Numero da versão
+
+[33mcommit 7c74ed267b5e22e1d9308731e0cf5f01121aafd1[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Tue Nov 26 22:19:25 2024 -0300
+
+    testes de paginação em transações
+
+[33mcommit 790582c016c171a147e44b887a41daa319e65e00[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Wed Oct 30 00:21:05 2024 -0300
+
+    Paginação funcionando, falta btn link
+
+[33mcommit bb03513b4765f33e58ea372e10e98fc24087cb68[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 19 21:56:53 2024 -0300
+
+    tex capitalize em clientes
+
+[33mcommit df3d5877fccd411f238288561d85fdf24d831449[m
+Merge: ac05b67 3697ed6
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sun Oct 13 01:46:30 2024 +0000
+
+    Merge branch 'feature/data-periodo-transacoes' into 'develop'
+    
+    Feature/data periodo transacoes
+    
+    See merge request miqueiasbraga2001/mnotas-financas!2
+
+[33mcommit 3697ed60138ac19b009b8ade166e2641a4d8db71[m[33m ([m[1;31morigin/feature/data-periodo-transacoes[m[33m, [m[1;32mfeature/data-periodo-transacoes[m[33m)[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 22:39:53 2024 -0300
+
+    ajuste de view datas, ordenação de transações, numero de versão
+
+[33mcommit ac05b674f88a4c0cf6f846a01c14a5f822b45809[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 20:48:41 2024 -0300
+
+    puxei o filtro categoria de produção para atualizar o dev
+
+[33mcommit 73d64812a38fbd20e82a08336fdeb3f09a1b1894[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 20:38:22 2024 -0300
+
+    Juste de mnigrations, não estava criando o user_id em trasacoes
+
+[33mcommit ad975daf44080136fc68f8a95a9627b656000c01[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 18:27:13 2024 -0300
+
+    Atualiza o README.md com informações sobre o projeto.
+
+[33mcommit b43a2ad4eb4a601a02bacb536f97431778b929a1[m
+Merge: 0e45291 f0b1e0a
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 18:20:29 2024 -0300
+
+    Merge branch 'develop' do GitLab para resolver conflitos e concluir o merge.
+
+[33mcommit 0e45291667b5472a123afd84113409fb30c02e9f[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 18:14:41 2024 -0300
+
+    readme personalizado
+
+[33mcommit eb84440616ae64ff1728a8b293e186db7392dca1[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 18:11:35 2024 -0300
+
+    reademe personalizado
+
+[33mcommit 25a3b40805a877b9d70fb23e36448ad631ed1d62[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 17:41:17 2024 -0300
+
+    add changelog
+
+[33mcommit f0b1e0a66ca5d093ef730a43deb0de244373b330[m
+Merge: f2a6eec 85724a4
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 20:01:29 2024 +0000
+
+    Merge branch 'feature/teste-melhoria' into 'develop'
+    
+    teste de noova melhoria
+    
+    See merge request miqueiasbraga2001/mnotas-financas!1
+
+[33mcommit 85724a423c580d5b6046d80cf3691462daa02dbc[m[33m ([m[1;31morigin/feature/teste-melhoria[m[33m, [m[1;32mfeature/teste-melhoria[m[33m)[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 16:56:30 2024 -0300
+
+    teste de noova melhoria
+
+[33mcommit f2a6eecac1ad4ebb4f0376ac01f80b21a8b1761d[m[33m ([m[1;33mtag: [m[1;33mv1.0[m[33m)[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 16:26:56 2024 -0300
+
+    start
+
+[33mcommit 6f84cd212c3d9290ec401b27031bbc0a1dcc6ab1[m
+Author: Miquéias Braga <miqueiasbraga2001@gmail.com>
+Date:   Sat Oct 12 15:59:04 2024 -0300
+
+    start
