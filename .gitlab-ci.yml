@@ -7,4 +7,4 @@ deploy:
     - echo "Iniciando deploy..."
     - ssh root@147.93.9.109 'cd /www/wwwroot/mnotas.com.br && git pull && cp .env.example .env && cp .htaccess /caminho/para/seu/diretorio/.htaccess && composer install --no-interaction && php artisan migrate'
   only:
-    - main
+    - master
