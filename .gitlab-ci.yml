@@ -3,9 +3,9 @@ stages:
 
 deploy:
   stage: deploy
-  image: ruby:2.7
+  image: alpine:latest # Usa uma imagem mínima do Alpine Linux
   before_script:
-    - apt-get update -y && apt-get install -y lftp
+    - apk add --no-cache lftp
   script:
     - lftp -c "set ftp:list-options -a;
                set ssl:verify-certificate no;
