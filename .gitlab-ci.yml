@@ -3,13 +3,13 @@ stages:
 
 deploy:
   stage: deploy
-  image: alpine:latest # Usa uma imagem mínima do Alpine Linux
+  image: alpine:latest
   before_script:
     - apk add --no-cache lftp
   script:
     - lftp -c "set ftp:list-options -a;
                set ssl:verify-certificate no;
                open ftp://$FTP_USER:$FTP_PASS@$FTP_HOST;
-               mirror -R --parallel=10 --delete ./ $FTP_PATH;"
+               mirror -R --parallel=10 --delete --exclude-glob .env --exclude-glob .htaccess ./ $FTP_PATH;"
   only:
     - master
