@@ -1,29 +1,17 @@
 stages:
-  - install
-  - build
   - deploy
-
-install:
-  stage: install
-  image: php:8.1-fpm
-  script:
-    - composer install --no-dev --optimize-autoloader
-
-build:
-  stage: build
-  image: node:16
-  script:
-    #- npm install
-    - npm run prod # ou npm run build, dependendo da configuração do seu projeto
-    - npm run production # caso tenha essa configuração em seu package.json
-  only:
-    - master
 
 deploy:
   stage: deploy
   image: alpine:latest
   before_script:
     - apk add --no-cache lftp
+    # Comandos de otimização do Laravel
+    - apk add --no-cache php7 php7-opcache php7-cli php7-fpm php7-mbstring php7-xml php7-pdo php7-mysqli php7-json php7-curl
+    - php artisan config:cache
+    - php artisan route:cache
+    - php artisan view:cache
+    - php artisan optimize
   script:
     - lftp -c "set ftp:list-options -a;
                set ssl:verify-certificate no;
