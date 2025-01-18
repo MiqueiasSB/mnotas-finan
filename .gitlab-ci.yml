@@ -1,5 +1,23 @@
 stages:
+  - install
+  - build
   - deploy
+
+install:
+  stage: install
+  image: php:8.1-fpm
+  script:
+    - composer install --no-dev --optimize-autoloader
+
+build:
+  stage: build
+  image: node:16
+  script:
+    - npm install
+    - npm run prod # ou npm run build, dependendo da configuração do seu projeto
+    - npm run production # caso tenha essa configuração em seu package.json
+  only:
+    - master
 
 deploy:
   stage: deploy
