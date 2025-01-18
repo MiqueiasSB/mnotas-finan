@@ -3,8 +3,13 @@ stages:
 
 deploy:
   stage: deploy
+  image: ruby:2.7
+  before_script:
+    - apt-get update -y && apt-get install -y lftp
   script:
-    - echo "Iniciando deploy..."
-    - ssh -o StrictHostKeyChecking=no root@147.93.9.109 'cd /www/wwwroot/mnotas.com.br && git pull && cp .env.example .env && cp .htaccess /caminho/para/seu/diretorio/.htaccess && composer install --no-interaction && php artisan migrate'
+    - lftp -c "set ftp:list-options -a;
+               set ssl:verify-certificate no;
+               open ftp://$FTP_USER:$FTP_PASS@$FTP_HOST;
+               mirror -R --parallel=10 --delete ./ $FTP_PATH;"
   only:
-    - master
+    - main
