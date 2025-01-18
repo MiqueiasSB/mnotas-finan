@@ -6,4 +6,4 @@
     <livewire:categorias></livewire:categorias>
 
 @endsection
- 
+  
