@@ -7,7 +7,7 @@ build:
   image: node:alpine
   script:
     - npm install
-    - npm run prod
+    - npm run build
   artifacts:
     paths:
       - public/build
