@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'card px-0 shadow shadow-sm animate__animated']) }}>
+<div {{ $attributes->merge(['class' => 'card px-0 shadow shadow-sm animate__animated rounded rounded-4']) }}>
 
     @if ($header ?? false)
         <div class="card-header bg-primary">
@@ -14,4 +14,3 @@
     @endif
 
 </div>
- 
