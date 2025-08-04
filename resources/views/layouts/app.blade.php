@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4A90E2">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -55,7 +58,7 @@
 
     <!-- Div para a versão -->
     <div class="text-end d-sm-block d-none opacity-25 pb-1 pe-1">
-        <small>{{  config('app.version') }}</small>
+        <small>{{ config('app.version') }}</small>
     </div>
 </body>
 
