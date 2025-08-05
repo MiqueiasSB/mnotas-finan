@@ -3,10 +3,11 @@ self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open('mnotas-cache').then(function(cache) {
       return cache.addAll([
-        '/',
+        '/home',              // cache da rota estável
         '/css/app.css',
         '/js/app.js',
-        '/icons/icon-192x192.png'
+        '/img/logo-192.png',
+        '/img/logo-512.png'
       ]);
     })
   );
@@ -14,8 +15,8 @@ self.addEventListener('install', function(e) {
 
 self.addEventListener('fetch', function(e) {
   e.respondWith(
-    caches.match(e.request).then(function(response) {
-      return response || fetch(e.request);
+    fetch(e.request).catch(() => {
+      return caches.match(e.request);
     })
   );
 });

@@ -1,17 +1,30 @@
 <div wire:key="{{ $item->id }}" class="col-12">
 
     @php
-        $categoria = $this->categorias->find($item->categoria_id);
+    $categoria = $this->categorias->find($item->categoria_id);
     @endphp
 
-    <div class="card ItemLista animate text-light" x-on:click="view = !view" wire:click="view({{ $item->id }})"
-        x-data="{ hoverItem: false }" x-bind:class="{
-            'border-black shadow': hoverItem,
-        }"
-        style="{{ $this->corItem($categoria->tipo) }}" x-on:mouseenter="hoverItem = true"
+    <div
+        class="card ItemLista animate text-light"
+        x-data="{ hoverItem: false, view: false }"
+        x-on:mouseenter="hoverItem = true"
         x-on:mouseleave="hoverItem = false"
-        @if (!empty($item->cliente_id) && empty($this->cliente)) @click="window.location.href = '/clientes/{{ $item->cliente_id }}'"
-        @else data-bs-toggle="modal" data-bs-target="#viewTransacao" @endif>
+        x-bind:class="{ 'border-black shadow': hoverItem }"
+        style="{{ isset($categoria) ? $this->corItem($categoria->tipo) : 'background-color: #333;' }}"
+
+
+        {{-- Clique principal: alterna visualização com Alpine e executa Livewire --}}
+        x-on:click="view = !view"
+        wire:click="view({{ $item->id }})"
+
+        {{-- Redireciona para cliente se tiver cliente_id e nenhum cliente selecionado --}}
+        @if (!empty($item->cliente_id) && empty($this->cliente))
+        x-on:click.stop="window.location.href = '/clientes/{{ $item->cliente_id }}'"
+        @else
+        data-bs-toggle="modal"
+        data-bs-target="#viewTransacao"
+        @endif
+        >
 
 
         <div class="card-body py-2 gy-2 row align-items-center">
@@ -36,17 +49,18 @@
 
                     {{-- Categoria --}}
                     <div class="col text-md-center text-start text-capitalize order-sm-2">
-                        <small>
-                            @if ($categoria->tipo == 'Receita')
+                        @if (!is_null($categoria))
+                            <small>
+                                @if ($categoria->tipo == 'Receita')
                                 <i class="bi bi-arrow-up-right-circle-fill"></i>
-                            @elseif ($categoria->tipo == 'Despesa')
+                                @elseif ($categoria->tipo == 'Despesa')
                                 <i class="bi bi-arrow-down-right-circle-fill"></i>
-                            @else
+                                @else
                                 <i class="bi bi-hourglass-split"></i>
-                            @endif
-                            <span>{{ $categoria->nome }}</span>
-                        </small>
-
+                                @endif
+                                <span>{{ $categoria->nome }}</span>
+                            </small>
+                        @endif
 
                     </div>
 
@@ -55,52 +69,52 @@
                         data-bs-target="#viewTransacao">
                         <small>
                             @if (empty($this->cliente))
-                                <div class="row align-items-center">
-                                    <span class="col-12 ">
-                                        @switch($this->tipoPeriodo)
-                                            @case('Diário') 
-                                                <i class="bi bi-clock"></i>     
-                                                {{ $item->created_at->format(' H:i') }}
-                                            @break
+                            <div class="row align-items-center">
+                                <span class="col-12 ">
+                                    @switch($this->tipoPeriodo)
+                                    @case('Diário')
+                                    <i class="bi bi-clock"></i>
+                                    {{ $item->created_at->format(' H:i') }}
+                                    @break
 
-                                            @case('Mensal')
-                                                <i class="bi bi-calendar-event-fill"></i> 
-                                                {{ \Carbon\Carbon::parse($item->data)->format('d -') }}
-                                                {{ $item->created_at->format('H:i') }}
-                                            @break
+                                    @case('Mensal')
+                                    <i class="bi bi-calendar-event-fill"></i>
+                                    {{ \Carbon\Carbon::parse($item->data)->format('d -') }}
+                                    {{ $item->created_at->format('H:i') }}
+                                    @break
 
-                                            @case('Anual')
-                                                <i class="bi bi-calendar-event-fill"></i> 
-                                                {{ \Carbon\Carbon::parse($item->data)->format('d/m -') }}
-                                                {{ $item->created_at->format('H:i') }}
-                                            @break
+                                    @case('Anual')
+                                    <i class="bi bi-calendar-event-fill"></i>
+                                    {{ \Carbon\Carbon::parse($item->data)->format('d/m -') }}
+                                    {{ $item->created_at->format('H:i') }}
+                                    @break
 
-                                            @case('Personalizado')
-                                                <i class="bi bi-calendar-event-fill"></i> 
-                                                {{ \Carbon\Carbon::parse($item->data)->format('d/m/y -') }}
-                                                {{ $item->created_at->format('H:i') }}
-                                            @break
-                                        @endswitch
-                                    </span>
+                                    @case('Personalizado')
+                                    <i class="bi bi-calendar-event-fill"></i>
+                                    {{ \Carbon\Carbon::parse($item->data)->format('d/m/y -') }}
+                                    {{ $item->created_at->format('H:i') }}
+                                    @break
+                                    @endswitch
+                                </span>
 
 
 
-                                    @if (!empty($item->cliente_id))
-                                        <a class="col-12 link-underline link-underline-opacity-0 text-light text-capitalize"
-                                            href="/clientes/{{ $item->cliente_id }}">
+                                @if (!empty($item->cliente_id))
+                                <a class="col-12 link-underline link-underline-opacity-0 text-light text-capitalize"
+                                    href="/clientes/{{ $item->cliente_id }}">
 
-                                            <i class="bi bi-person-circle"></i>     
+                                    <i class="bi bi-person-circle"></i>
 
-                                            {{ $this->clientesArrayId[$item->cliente_id]->nome ?? '' }}
+                                    {{ $this->clientesArrayId[$item->cliente_id]->nome ?? '' }}
 
-                                        </a>
-                                    @endif
-                                </div>
+                                </a>
+                                @endif
+                            </div>
                             @else
-                                <small>
-                                    <i class="bi bi-calendar-event"></i>
-                                    {{ $item->created_at->format('d/m/Y H:i') }}
-                                </small>
+                            <small>
+                                <i class="bi bi-calendar-event"></i>
+                                {{ $item->created_at->format('d/m/Y H:i') }}
+                            </small>
                             @endif
                         </small>
 
@@ -117,10 +131,10 @@
 
                 </div>
                 @if ($item->quantidade != 1)
-                    <span class="row">
-                        <small class="col-12 text-end">R$ {{ number_format($item->valor, 2, ',', '.') }}</small>
+                <span class="row">
+                    <small class="col-12 text-end">R$ {{ number_format($item->valor, 2, ',', '.') }}</small>
 
-                    </span>
+                </span>
                 @endif
 
 

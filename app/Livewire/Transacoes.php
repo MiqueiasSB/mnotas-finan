@@ -248,7 +248,7 @@ class Transacoes extends Component {
     public function updatedTipoPeriodo() {
 
         /*
-            Estou usando a DataAtual apenas para mostrar o formato correto na view, 
+            Estou usando a DataAtual apenas para mostrar o formato correto na view,
             Enquanto a DataInicial vai ser usada para ser armazendad no BD.
             Algumas vezes elas vão ser iguais...
         */
@@ -306,7 +306,7 @@ class Transacoes extends Component {
             id - 1 - Receita
             id - 2 - Despesa
             id - 3 - A Receber
-        
+
         */
         $saveFormaPagamento = $this->pagamentoClassePraNome($this->forma_pagamento);
 

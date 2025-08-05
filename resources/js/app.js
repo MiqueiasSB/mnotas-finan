@@ -8,6 +8,7 @@ import mask from '@alpinejs/mask'
 Alpine.plugin(mask)
 import intersect from '@alpinejs/intersect'
 Alpine.plugin(intersect)
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('/sw.js')
@@ -18,6 +19,7 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
 
 
 //Alpine.start()

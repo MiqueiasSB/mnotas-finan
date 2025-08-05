@@ -17,7 +17,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Mail;
 
 Route::redirect('/', '/home');
-Route::view('/home', 'welcome'); 
+Route::view('/home', 'welcome');
 
 Auth::routes(['verify' => true]);
 
@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-// Rotas protegidas por autenticação 'subscription.active'  
+// Rotas protegidas por autenticação 'subscription.active'
 Route::middleware(['auth', 'verified'  ])->group(function () {
     Route::get('/painel', [HomeController::class, 'painel'])->name('painel');
     Route::get('/vendas', [HomeController::class, 'index'])->name('vendas');
