@@ -1,11 +1,12 @@
-<x-caixa 
+<x-caixa
     x-data="{ hover: false }"
+    {{ $attributes }}
     class="mb-2"
-    bodyClass="d-flex flex-row align-items-center flex-wrap align-content-between" 
-    x-on:click="window.location.href = '/clientes/{{ $cliente->id }}'" 
+    bodyClass="d-flex flex-row align-items-center flex-wrap align-content-between"
+    x-on:click="window.location.href = '/clientes/{{ $cliente->id }}'"
     @mouseover="hover = true"
     @mouseout="hover = false"
-    x-bind:class="{ 'bg-gray-200': hover }"
+    x-bind:class="{ 'bg-gray-300': hover }"
     style="cursor: pointer;">
 
 

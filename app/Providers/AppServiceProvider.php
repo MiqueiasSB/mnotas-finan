@@ -14,7 +14,6 @@ use App\Repositories\Interfaces\TransactionInterface;
 use App\Repositories\Interfaces\CategoryTransactionInterface;
 use App\Repositories\Interfaces\UserInterface;
 
-
 use App\Repositories\Eloquent\ProductRepository;
 use App\Repositories\Eloquent\ClientRepository;
 use App\Repositories\Eloquent\SubscriptionItemRepository;
