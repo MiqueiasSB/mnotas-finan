@@ -1,15 +1,15 @@
 <div x-data="{
     open: false,
     categoriaSelecionada: @entangle('categoriaSelecionada'),
-   
-    topCategorias:  @entangle('topCategorias'), 
+
+    topCategorias:  @entangle('topCategorias'),
 }" x-on:click.away="open = false" class="h-100 d-flex ">
 
-   
+
     {{-- inputs para enviar valores para o controler ao salvar | SEM VISIBILIDADE--}}
     <input type="text" class="d-none" wire:model="tipoSelecionado" :value="topCategorias[tipoSelecionado][0]">
     <input type="text" class="d-none" wire:model="categoriaSelecionada" :value="categoriaSelecionada">
-    
+
     {{-- Botão principal de seleção --}}
     <button x-on:click="open = !open" type="button" class=" btn text-light w-100 h-100"
         :class="'bg-' + topCategorias[tipoSelecionado][2]">
@@ -43,11 +43,11 @@
                         <template x-if="topCategoria[0] === '{{ $categoria->tipo }}' && {{ $categoria->id}} !== 1 && {{ $categoria->id}} !== 2 && {{ $categoria->id }} !== 3">
 
                             <div class="col mt-1">
-                                <button type="button" class="btn btn-sm btn-light w-100 text-capitalize" 
+                                <button type="button" class="btn btn-sm btn-light w-100 text-capitalize"
                                     x-on:click="tipoSelecionado = index,
                                                 open = false,
                                                 categoriaSelecionada = '{{ $categoria->nome }}'">
-                                                
+
                                      {{ $categoria->nome }}
                                 </button>
                             </div>

@@ -5,7 +5,7 @@
     @endphp
 
     <div
-        class="card ItemLista animate text-light"
+        class="card ItemLista animate rounded rounded-4 text-light"
         x-data="{ hoverItem: false, view: false }"
         x-on:mouseenter="hoverItem = true"
         x-on:mouseleave="hoverItem = false"

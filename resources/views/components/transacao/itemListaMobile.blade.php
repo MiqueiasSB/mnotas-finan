@@ -1,9 +1,7 @@
 <div class="col-12">
 
     @php
-
-    $categoria = $this->categorias->find($item->categoria_id);
-
+        $categoria = $this->categorias->find($item->categoria_id);
     @endphp
 
     <div wire:key="{{ $item->id }}" class="card ItemLista animate text-light " x-on:click="view = !view" wire:click="view({{ $item->id }})"
@@ -79,8 +77,6 @@
                                             @endswitch
                                         </spam>
 
-
-
                                         @if (!empty($item->cliente_id))
                                         <a class="col-12 link-underline link-underline-opacity-0 text-light text-capitalize"
                                             href="/clientes/{{ $item->cliente_id }}">
@@ -123,7 +119,6 @@
                 @if ($item->quantidade != 1)
                 <span class="row">
                     <small class="col-12 text-end">R$ {{ number_format($item->valor, 2, ',', '.') }}</small>
-
                 </span>
                 @endif
 

@@ -591,6 +591,7 @@ class Transacoes extends Component {
                 break;
         }
 
-        return "background: linear-gradient(90deg, {$cor} 10%, {$corContraste} 50%, {$cor} 90%);";
+        //return "background: linear-gradient(90deg, {$cor} 10%, {$corContraste} 50%, {$cor} 90%);";
+        return "background: linear-gradient(90deg, {$corContraste} 0%, {$cor} 100%);";
     }
 }

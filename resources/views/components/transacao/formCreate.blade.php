@@ -2,12 +2,9 @@
     tipoSelecionado: @entangle('tipoSelecionado'),
 }">
     <div class="row align-items-center gy-md-2 gy-3 my-1">
-
-        <div class=" col-lg-1 col-md-3 col-6 order-md-1 order-2  ">
-
+        <div class=" col-lg-1 col-md-3 col-6 order-md-1 order-2">
             <input id="inputQuantidade" type="number" class="form-control @error('quantidade') is-invalid @enderror"
                 wire:model="quantidade">
-
             @error('quantidade')
                 <span class="invalid-feedback">Minimo 1</span>
             @enderror
@@ -25,15 +22,11 @@
         </div>
 
         <div class="col-lg-3 col-md-4 col-12 order-md-2 order-1">
-
             <x-transacao.selectCategoria></x-transacao.selectCategoria>
-
         </div>
 
         <div class="col-lg-1 col-md-4 col-12 order-md-2 order-1">
-
             <x-selectFormaPagamento></x-selectFormaPagamento>
-
         </div>
 
         <div class="col-lg-2 col-md-4 col-6 order-md-3 order-3">
