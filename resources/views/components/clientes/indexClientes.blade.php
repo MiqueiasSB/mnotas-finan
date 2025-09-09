@@ -28,7 +28,7 @@
         <div class="row justify-content-end pe-2 fixed-bottom z-3" style="margin-bottom: 5em !important;">
             <div class="col-4 text-end">
                 <a href="{{ route('clientes.create') }}"
-                    class="btn btn-lg btn-primary text-white fw-bold @if (!Auth::user()->subscription('default')) disabled @endif">
+                    class="btn btn-lg btn-primary text-white fw-bold rounded-circle shadow shadow-lg p-3 @if (!Auth::user()->subscription('default')) disabled @endif">
                     <i class="display-6 bi bi-person-fill-add"></i></a>
             </div>
         </div>
