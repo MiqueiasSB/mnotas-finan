@@ -124,11 +124,10 @@
 
             {{-- Preço --}}
             <div class="col-md-2 col-3 p-sm-2 p-1" data-bs-toggle="modal" data-bs-target="#viewTransacao">
-                <div class="row ">
+                <div class="row">
                     <strong class="col-12 text-end">
                         R$ {{ number_format($item->valor * $item->quantidade, 2, ',', '.') }}
                     </strong>
-
                 </div>
                 @if ($item->quantidade != 1)
                 <span class="row">

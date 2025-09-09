@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transacao extends Model {
+class Transacao extends Model
+{
     use HasFactory;
 
     protected $table = 'transacaos'; // Nome da tabela
@@ -20,15 +21,19 @@ class Transacao extends Model {
         'data',
         'data_final'
     ]; // Colunas que podem ser preenchidas em massa
-
+    protected $casts = [
+        'valor' => 'decimal:2',
+    ];
 
     ############# RELACIONAMENTOS
     // Relacionamento: Um pedido pertence a um usuário
-    public function umCliente() {
+    public function umCliente()
+    {
         return $this->belongsTo(Cliente::class);
     }
 
-    public function CategoriaTransacao() {
+    public function CategoriaTransacao()
+    {
         // Especifique a chave estrangeira como 'categoria_id'
         return $this->belongsTo(CategoriaTransacao::class, 'categoria_id');
     }

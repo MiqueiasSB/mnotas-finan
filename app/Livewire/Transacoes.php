@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 
-class Transacoes extends Component {
+class Transacoes extends Component
+{
 
     public
         $user,
@@ -55,7 +56,8 @@ class Transacoes extends Component {
             2 => ['A Receber', 'bi bi-hourglass-split', 'warning']
         ];
 
-    public function mount($cliente = null, $dataAtual = null) {
+    public function mount($cliente = null, $dataAtual = null)
+    {
 
         $this->user = Auth::user();
         // O refresh não passa por aqui
@@ -80,7 +82,8 @@ class Transacoes extends Component {
         $this->updatedTipoPeriodo();
     }
 
-    public function render() {
+    public function render()
+    {
 
         // $this->cliente->divida_total = Cliente::find($this->cliente->id)->divida_total;
         //$transacoes = Transacao::were
@@ -103,7 +106,7 @@ class Transacoes extends Component {
                         ->orderByDesc('periodo') // Ordena pelo período diretamente
                         ->orderByDesc('created_at') // Ordena por data de criação se necessário
                         ->get();
-                        //->paginate($this->quantPaginas); // Define a paginação normalmente
+                    //->paginate($this->quantPaginas); // Define a paginação normalmente
                     break;
 
                 case 'Mensal':
@@ -116,7 +119,7 @@ class Transacoes extends Component {
                         ->whereMonth('data_final', $month)
                         ->orderBy('created_at', 'desc')
                         ->get();
-                        //->paginate($this->quantPaginas);
+                    //->paginate($this->quantPaginas);
                     break;
 
                 case 'Anual':
@@ -126,7 +129,7 @@ class Transacoes extends Component {
                         ->whereYear('data', $this->dataAtual)
                         ->orderBy('created_at', 'desc')
                         ->get();
-                        //->paginate($this->quantPaginas);
+                    //->paginate($this->quantPaginas);
                     break;
 
                 case 'Personalizado':
@@ -135,7 +138,7 @@ class Transacoes extends Component {
                         ->whereDate('data_final', '<=', $this->dataFinal)
                         ->orderBy('created_at', 'desc')
                         ->get();
-                        //->paginate($this->quantPaginas);
+                    //->paginate($this->quantPaginas);
 
                     break;
             }
@@ -167,7 +170,8 @@ class Transacoes extends Component {
         return view('livewire.Transacoes');
     }
 
-    private function defineVariavelFiltro() {
+    private function defineVariavelFiltro()
+    {
         $this->filtro = [
             'tipo' => [
                 'Receita' => [
@@ -197,7 +201,8 @@ class Transacoes extends Component {
         $this->filtroModelo = $this->filtro;
     }
 
-    public function defineIdsTipoSemCategorias() {
+    public function defineIdsTipoSemCategorias()
+    {
 
         $this->idsTipoSemCategorias = ['Receita' => '', 'Despesa' => ''];
 
@@ -212,11 +217,13 @@ class Transacoes extends Component {
         }
     }
 
-    public function limparFiltro() {
+    public function limparFiltro()
+    {
         $this->filtro = $this->filtroModelo;
     }
 
-    private function filtrarTransacoes() {
+    private function filtrarTransacoes()
+    {
         $query = Transacao::where('user_id', auth()->id())->orderByDesc('data'); // ou $this->user->id se você tiver acesso ao usuário
         //dd($query);
         foreach (['Receita', 'Despesa'] as $tipo) {
@@ -245,7 +252,8 @@ class Transacoes extends Component {
         return $query;
     }
 
-    public function updatedTipoPeriodo() {
+    public function updatedTipoPeriodo()
+    {
 
         /*
             Estou usando a DataAtual apenas para mostrar o formato correto na view,
@@ -286,7 +294,8 @@ class Transacoes extends Component {
         }
     }
 
-    public function updatedDataInicial() {
+    public function updatedDataInicial()
+    {
         //Serve para evitar que a data final seje anterior a data inicial
         $inicial = new DateTime($this->dataInicial);
         $final = new DateTime($this->dataFinal);
@@ -297,7 +306,8 @@ class Transacoes extends Component {
         }
     }
 
-    public function save() {
+    public function save()
+    {
         /*
             Categorias Genêricas
 
@@ -313,6 +323,21 @@ class Transacoes extends Component {
         if ($this->tiposDeCategorias[$this->tipoSelecionado] == 'A Receber') {
             $saveFormaPagamento = null;
         }
+
+        $this->validate([
+            'valor' => [
+                'required',
+
+            ],
+            'quantidade' => ['required', 'integer', 'min:1']
+        ], [
+            'valor.required' => 'Informe o valor.',
+            'quantidade.required' => 'Informe a quantidade.',
+            'quantidade.integer' => 'A quantidade deve ser um número inteiro.',
+            'quantidade.min' => 'Mínimo 1'
+        ]);
+
+
 
         Transacao::create([
             'item' => $this->item,
@@ -336,7 +361,8 @@ class Transacoes extends Component {
 
         $this->dispatch('fecharFormModal');
     }
-    public function nomeIdClientes() {
+    public function nomeIdClientes()
+    {
         //Serve para facilitar a chamada do id de cada venda e relacionar com seu usuario
 
         $this->clientes = Cliente::where('user_id', $this->user->id)->get();
@@ -345,7 +371,8 @@ class Transacoes extends Component {
             $this->clientesArrayId[$cliente->id] = $cliente;
         }
     }
-    public function idCategoria() {
+    public function idCategoria()
+    {
 
         return CategoriaTransacao::where(function ($query) {
             $query->where('user_id', $this->user->id)
@@ -356,7 +383,8 @@ class Transacoes extends Component {
             ->first()->id;
     }
 
-    public function view($transacaoId) {
+    public function view($transacaoId)
+    {
         //$this->dispatch('abrirViewModal');
 
         //Resgata dados da transacao selecionada
@@ -375,7 +403,8 @@ class Transacoes extends Component {
         $this->dispatch('noneBtnPlus');
     }
 
-    public function limparModal() {
+    public function limparModal()
+    {
         $this->quantidade =  1;
         $this->item =  '';
         $this->categoriaSelecionada =  'Receita';
@@ -384,7 +413,8 @@ class Transacoes extends Component {
         $this->valor =  '';
     }
 
-    public function up() {
+    public function up()
+    {
 
         $this->transacao->update([
             'item' => $this->item,
@@ -399,7 +429,8 @@ class Transacoes extends Component {
         $this->dispatch('fecharViewModal');
     }
 
-    public function destroy() {
+    public function destroy()
+    {
 
 
 
@@ -413,7 +444,9 @@ class Transacoes extends Component {
         $this->dispatch('fecharViewModal');
     }
 
-    public function formatValor($stringNumero) {
+
+    public function formatValor($stringNumero)
+    {
         // Remover pontos como separadores de milhares
         $stringNumero = str_replace('.', '', $stringNumero);
 
@@ -427,7 +460,8 @@ class Transacoes extends Component {
         return $numeroDecimal;
     }
 
-    public function navegDatas($sentido) {
+    public function navegDatas($sentido)
+    {
 
 
         switch ($this->tipoPeriodo) {
@@ -477,7 +511,8 @@ class Transacoes extends Component {
         $this->atualizarVenda();
     }
 
-    public function pagamentoClassePraNome($classPagamento) {
+    public function pagamentoClassePraNome($classPagamento)
+    {
         switch ($classPagamento) {
             case 'fa-solid fa-money-bill-wave':
                 return 'dinheiro';
@@ -509,7 +544,8 @@ class Transacoes extends Component {
         }
     }
 
-    public function pagamentoNomepraClasse($classPagamento) {
+    public function pagamentoNomepraClasse($classPagamento)
+    {
         switch ($classPagamento) {
             case 'dinheiro':
 
@@ -543,13 +579,15 @@ class Transacoes extends Component {
         }
     }
 
-    public function atualizarVenda() {
+    public function atualizarVenda()
+    {
 
 
         $this->dispatch('atualizarVenda', $this->dataAtual);
     }
 
-    public function calculaDivida() {
+    public function calculaDivida()
+    {
 
         $somaReceitas = Transacao::where('user_id', Auth::user()->id)
             ->where('cliente_id', $this->cliente->id)
@@ -572,7 +610,8 @@ class Transacoes extends Component {
         return  $somaAReceber - $somaReceitas;
     }
 
-    public function corItem($tipo) {
+    public function corItem($tipo)
+    {
         $cor = null;
         $corContraste = '#000';
 

@@ -1,7 +1,6 @@
 <!-- Button trigger modal -->
-<div wire:ignore.self   class="modal modal-xl fade" id="viewTransacao" tabindex="-1" aria-labelledby="viewTransacaoLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" x-on:click.away="view = false">
+<div wire:ignore.self class="modal fade" id="viewTransacao" tabindex="-1" aria-labelledby="viewTransacaoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen" x-on:click.away="view = false">
         <div class="modal-content">
             <div class="modal-header">
 
