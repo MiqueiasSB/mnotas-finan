@@ -1,23 +1,20 @@
-<div>
-    <!-- Botão flutuante -->
-    <div class="row justify-content-end pe-4 fixed-bottom z-3" style="margin-bottom: 5em !important;">
-        <button class="btn btn-lg btn-primary rounded-circle shadow shadow-lg" data-bs-toggle="modal" data-bs-target="#modalFiltro" style="width: 60px; height: 60px;">
-            <i class="bi bi-plus-lg fs-3"></i>
-        </button>
-    </div>
+<!-- Button trigger modal -->
+<div wire:ignore.self class="modal fade" id="smViewTransacao" tabindex="-1" aria-labelledby="smViewTransacaoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen" x-on:click.away="view = false">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class=" modal-title fs-5 text-capitalize" id="smViewTransacaoLabel">
+                    Editar Transação
+                </h1>
+                <button id="smFecharViewModal" x-on:click="view = !view" type="button" wire:click="limparModal()" class=" text-end btn-close"
+                    data-bs-dismiss="modal" aria-label="Close"></button>
 
-    <!-- Modal de Nova Transação -->
-    <div wire:ignore.self class="modal fade" id="modalFiltro" tabindex="-1" aria-labelledby="modalFiltroLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <!-- Cabeçalho -->
-                <div class="modal-header">
-                    <h4 class="fw-bold mb-0">Nova Transação</h4>
-                    <button id="btnModalTransacaoSm" type="button" class="btn-close btn btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+            </div>
 
-                <!-- Corpo do Modal -->
-                <div class="modal-body">
+            <div class="modal-body row g-4">
+
+                <!-- Formulário completo -->
+                <div class="col-12">
                     <form wire:submit.prevent="save" id="saveTransaction" x-data="{ tipoSelecionado: @entangle('tipoSelecionado') }">
                         <div class="d-flex flex-column gap-4">
 
@@ -51,7 +48,6 @@
                                 <div class="flex-fill" x-data="app">
                                     <label for="inputValor" class="form-label">Valor (R$)</label>
                                     <div class="input-group">
-                                        {{-- --}}
                                         <input id="inputValor"
                                             x-mask:dynamic="$money($input, ',', '.')"
                                             placeholder="0,00"
@@ -63,15 +59,15 @@
                                         <span class="invalid-feedback">{{ $message }}</span>
                                         @enderror
                                     </div>
-
                                 </div>
                             </div>
+
+                            <!-- Valor Total Dinâmico -->
                             @if ($this->quantidade>1)
                             <div class="d-flez my-3">
                                 Valor Total: R$
                                 <span class="fw-bold fs-5">
                                     @php
-                                    // Converte o valor formatado para float
                                     $valorFloat = floatval(str_replace(',', '.', str_replace('.', '', $this->valor ?? '0')));
                                     $quantidade = $this->quantidade ?? 0;
                                     $total = $valorFloat * $quantidade;
@@ -96,57 +92,53 @@
                     </form>
                 </div>
 
-                <div class="modal-footer row z-3 p-0">
-                    <div class="btn-group m-0 p-0" role="group" aria-label="Basic example">
-                        <button data-bs-dismiss="modal" aria-label="Close"
-                            class="btn btn-lg btn-light w-100 fw-bold py-4 rounded-0">
-                            Cancelar
-                        </button>
-                        <button type="submit" form="saveTransaction"
-                            @if (!Auth::user()->subscription('default')) disabled @endif
-                            class="btn btn-lg btn-primary w-100 fw-bold py-4 rounded-0">
-                            Salvar
-                        </button>
-                    </div>
+                <!-- Valor Total e Datas -->
+                <div class="col-sm-6 text-end">
+                    <small>
+                        Dia Definído:
+                        {{ !is_null($this->transacao) ? (new DateTime($this->transacao->data))->format('d/m/Y') : '' }}
+                    </small>
+                    <br>
+                    <small>
+                        Data de Criação:
+                        {{ !is_null($this->transacao) ? $this->transacao->created_at->format('d/m/Y H:i:s') : '' }}
+                    </small>
+                    @if (!is_null($this->transacao))
+                    @if ($this->transacao->updated_at != $this->transacao->created_at)
+                    <br>
+                    <small>
+                        Última Atualização:
+                        {{ !is_null($this->transacao) ? $this->transacao->updated_at->format('d/m/Y H:i:s') : '' }}
+                    </small>
+                    @endif
+                    @endif
+                </div>
+            </div>
+
+            <div class="modal-footer row z-3 p-0">
+                <div class="btn-group m-0 p-0" role="group" aria-label="Basic example">
+                    <button wire:click="destroy()"
+                        class="btn btn-lg btn-light w-100 fw-bold py-4 rounded-0">
+                        Cancelar
+                    </button>
+                    <button type="submit" form="saveTransaction"
+                        wire:click="up()"
+                        class="btn btn-lg btn-info w-100 fw-bold py-4 rounded-0">
+                        Atualizar
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
+
     @script
     <script>
-        $wire.on('fecharFormModal', () => {
-            $('#btnModalTransacaoSm').click()
+        $wire.on('fecharViewModal', () => {
+            $('#fecharViewModal').click()
+            $('#smFecharViewModal').click()
+            $('.btnPlus').removeClass('d-none')
         })
     </script>
     @endscript
 </div>
-
-
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('app', () => ({
-            valorInput: '',
-            valorFormatado: '0,00',
-
-            formatarValor() {
-                // Remove todos os caracteres que não sejam números
-                let valorNumerico = this.valorInput.replace(/[^\d]/g, '');
-
-                // Garante que temos pelo menos '00' para os centavos
-                valorNumerico = valorNumerico.padStart(3, '0');
-
-                // Separa reais e centavos
-                const centavos = valorNumerico.slice(-2);
-                const reais = valorNumerico.slice(0, -2) || '0';
-
-                // Formata com separadores de milhar
-                const reaisFormatados = reais.replace(/^0+/, '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-
-                // Atualiza o valor formatado
-                this.valorFormatado = `${reaisFormatados || '0'},${centavos}`;
-                this.valorInput = this.valorFormatado;
-            }
-        }))
-    });
-</script>

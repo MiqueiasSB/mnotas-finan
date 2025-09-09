@@ -13,7 +13,7 @@
         @if (!empty($item->cliente_id) && empty($this->cliente))
         @click="window.location.href = '/clientes/{{ $item->cliente_id }}'"
         @else
-        data-bs-toggle="modal" data-bs-target="#viewTransacao"
+        data-bs-toggle="modal" data-bs-target="#smViewTransacao"
         @endif>
 
         <div class="card-body py-2 gy-2 row align-items-center">

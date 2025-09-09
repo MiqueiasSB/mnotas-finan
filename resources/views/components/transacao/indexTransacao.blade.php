@@ -3,6 +3,7 @@
     //$this->transacoes = $this->transacoes->paginate($this->quantPaginas);
     @endphp
     <x-transacao.viewTransacao></x-transacao.viewTransacao>
+    <x-transacao.smViewTransacao></x-transacao.smViewTransacao>
 
     <div class="row gy-2">
         @if (empty($this->cliente))

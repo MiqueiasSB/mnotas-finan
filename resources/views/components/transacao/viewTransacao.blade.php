@@ -1,11 +1,11 @@
 <!-- Button trigger modal -->
 <div wire:ignore.self class="modal fade" id="viewTransacao" tabindex="-1" aria-labelledby="viewTransacaoLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen" x-on:click.away="view = false">
+    <div class="modal-dialog modal-xl" x-on:click.away="view = false">
         <div class="modal-content">
             <div class="modal-header">
 
                 <h1 class=" modal-title fs-5 text-capitalize" id="viewTransacaoLabel">
-                    {{ $this->transacao->item ?? '' }}
+                    Editar Transação
                 </h1>
                 <button id="fecharViewModal"  x-on:click="view = !view" type="button" wire:click="limparModal()" class=" text-end btn-close"
                     data-bs-dismiss="modal" aria-label="Close"></button>
