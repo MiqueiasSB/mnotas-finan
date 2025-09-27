@@ -90,6 +90,7 @@ class Transacoes extends Component
         if (!empty($this->cliente)) { //No Painel Cliente
             $this->transacoes = Transacao::where('cliente_id', $this->cliente->id)
                 //->whereDate('data', $this->dataAtual)
+                ->where('user_id', $this->user->id)
                 ->orderBy('created_at', 'desc')
                 ->get();
 
@@ -102,6 +103,7 @@ class Transacoes extends Component
             switch ($this->tipoPeriodo) {
                 case 'Diário':
                     $this->transacoes = Transacao::whereDate('data', $this->dataAtual)
+                        ->where('user_id', $this->user->id)
                         ->selectRaw('*, DATEDIFF(data_final, data) as periodo') // Calcula o período no banco de dados
                         ->orderByDesc('periodo') // Ordena pelo período diretamente
                         ->orderByDesc('created_at') // Ordena por data de criação se necessário
